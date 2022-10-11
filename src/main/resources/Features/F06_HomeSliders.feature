@@ -1,0 +1,1 @@
+# TODO 6.3: Execute sliders scenario by using D06_HomeSliders functions

@@ -6,9 +6,9 @@ Feature: Registration with new account
   Scenario: User register with valid data successfully
     Given Navigate to register page
     When Gender selected
-    And User enter first name "automation" and last name "tester"
+    And User enter first name and last name
     And Date of birth entered
-    And User enter email "test@example.com" field
-    And User enter password fields "P@ssw0rd]
+    And User enter email field
+    And User enter password fields
     And Register button clicked
     Then Success message displayed

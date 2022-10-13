@@ -4,15 +4,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.final_project_software_testing_amit.Browser;
+import org.final_project_software_testing_amit.Hooks;
 import org.final_project_software_testing_amit.pages.P02_Login;
 import org.final_project_software_testing_amit.pages.P03_HomePage;
 import org.openqa.selenium.support.Color;
 import org.testng.asserts.SoftAssert;
-
-/* TODO 2.2: Define needed functions in
-    login_page(https://demo.nopcommerce.com/login?returnUrl=%2F) by using their elements in P02_Login
-    */
 
 public class D02_Login {
     private final P02_Login loginPage = new P02_Login();
@@ -20,16 +16,16 @@ public class D02_Login {
 
     @Given("Navigate to login page")
     public void navigateToLoginPage() {
-        Browser.navigateTo(loginPage.URL);
+        Hooks.Browser.navigateTo(loginPage.URL);
     }
 
-    @When("User enter valid email and password")
-    public void enterValidEmailAndPassword() {
-        loginPage.emailEditText.sendKeys("test@example.com");
-        loginPage.passwordEditText.sendKeys("P@ssword");
+    @Given("User enter valid data {string} as email and {string} as password")
+    public void enterValidEmailAndPassword(String validEmail, String validPassword) {
+        loginPage.emailEditText.sendKeys(validEmail);
+        loginPage.passwordEditText.sendKeys(validPassword);
     }
 
-    @And("Login button clicked")
+    @When("Login button clicked")
     public void loginButtonClicked() {
         loginPage.loginButton.click();
     }
@@ -37,15 +33,15 @@ public class D02_Login {
     @Then("Login proceed successfully")
     public void assertLoginProceedSuccessfully() {
         SoftAssert assertLoginSuccessful = new SoftAssert();
-        assertLoginSuccessful.assertEquals(Browser.getDriver().getCurrentUrl(), homePage.URL);
+        assertLoginSuccessful.assertEquals(Hooks.Browser.getDriver().getCurrentUrl(), homePage.URL);
         assertLoginSuccessful.assertTrue(homePage.myAccountTab.isDisplayed());
         assertLoginSuccessful.assertAll();
     }
 
-    @When("User enter invalid email and password")
-    public void enterInvalidEmailAndPassword() {
-        loginPage.emailEditText.sendKeys("wrong@example.com");
-        loginPage.passwordEditText.sendKeys("P@ssw0rd");
+    @Given("User enter invalid data {string} as email and {string} as password")
+    public void enterInvalidEmailAndPassword(String invalidEmail, String invalidPassword) {
+        loginPage.emailEditText.sendKeys(invalidEmail);
+        loginPage.passwordEditText.sendKeys(invalidPassword);
     }
 
     @Then("Login not proceeding")

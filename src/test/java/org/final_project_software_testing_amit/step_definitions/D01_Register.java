@@ -4,20 +4,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.final_project_software_testing_amit.Browser;
+import org.final_project_software_testing_amit.Hooks;
 import org.final_project_software_testing_amit.pages.P01_Register;
 import org.testng.asserts.SoftAssert;
-
-/* TODO 1.2: Define needed functions in
-    register_page(https://demo.nopcommerce.com/register?returnUrl=%2F) by using their elements in P01_Register
-    */
 
 public class D01_Register {
     private final P01_Register registerPage = new P01_Register();
 
     @Given("Navigate to register page")
     public void navigateToRegisterPage() {
-        Browser.navigateTo(registerPage.URL);
+        Hooks.Browser.navigateTo(registerPage.URL);
     }
 
     @When("Gender selected")

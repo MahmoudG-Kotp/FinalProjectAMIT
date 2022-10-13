@@ -1,17 +1,17 @@
-# TODO 2.3: Execute login scenario by using D02_Login functions
-
 @SmokeTest
 Feature: Login to existing account
 
-  Scenario: User login with valid data successfully
+  #Background used for repeated function in scenarios (https://toolsqa.com/cucumber/background-in-cucumber/)
+  Background: User Navigated to login page
     Given Navigate to login page
-    When User enter valid email and password
-    And Login button clicked
+
+  Scenario: User login with valid data successfully
+    Given User enter valid data "test@example.com" as email and "P@ssword" as password
+    When Login button clicked
     Then Login proceed successfully
 
   Scenario: User can't login with invalid data
-    Given Navigate to login page
-    When User enter invalid email and password
-    And Login button clicked
+    Given User enter invalid data "wrong@example.com" as email and "P@ssw0rd" as password
+    When Login button clicked
     Then Login not proceeding
 

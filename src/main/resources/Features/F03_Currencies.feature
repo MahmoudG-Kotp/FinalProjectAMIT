@@ -3,7 +3,7 @@
 @SmokeTest
 Feature: User switch between currencies
 
+  @HomePageTestScenario
   Scenario: Currencies switched according to user selection
-    Given Navigate to home page
-    When User select Euro currency
+    Given User select Euro currency
     Then Products currency changed to the euro

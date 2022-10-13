@@ -1,13 +1,11 @@
 package org.final_project_software_testing_amit.pages;
 
-import org.final_project_software_testing_amit.Browser;
+import org.final_project_software_testing_amit.Hooks;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
-
-// TODO 1.1: Define all web elements in register_page(https://demo.nopcommerce.com/register?returnUrl=%2F)
 
 public class P01_Register {
     public final String URL = "https://demo.nopcommerce.com/register?returnUrl=%2F";
@@ -38,6 +36,6 @@ public class P01_Register {
     public WebElement registrationSuccessfulMessage;
 
     public P01_Register() {
-        PageFactory.initElements(Browser.getDriver(), this);
+        PageFactory.initElements(Hooks.Browser.getDriver(), this);
     }
 }

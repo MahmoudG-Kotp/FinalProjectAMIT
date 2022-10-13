@@ -3,13 +3,22 @@
 @SmokeTest
 Feature: User search on product
 
-  Scenario: User search by product name successfully
-    Given Navigate to home page
-    When User search with product name
-    Then Shown products matches product name
+  @HomePageTestScenario
+  Scenario Outline: User search by product name successfully
+    Given User search with <product name>
+    Then Shown products matches <product name>
+    Examples: Products names in stock
+      | product name |
+      | Book         |
+      | Laptop       |
+      | Nike         |
 
-  Scenario: User search by product serial number successfully
-    Given Navigate to home page
-    When User search with product serial number
-    Then Shown products matches product serial number
-
+  @HomePageTestScenario
+  Scenario Outline: User search by product serialnumber successfully
+    Given User search with <serialnumber>
+    Then Shown products matches <serialnumber>
+    Examples: Products serials in stock
+      | serialnumber |
+      | SCI_FAITH    |
+      | APPLE_CAM    |
+      | SF_PRO_11    |

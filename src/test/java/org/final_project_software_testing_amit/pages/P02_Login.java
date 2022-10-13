@@ -2,7 +2,7 @@ package org.final_project_software_testing_amit.pages;
 
 // TODO 2.1: Define all web elements in login_page(https://demo.nopcommerce.com/login?returnUrl=%2F)
 
-import org.final_project_software_testing_amit.Browser;
+import org.final_project_software_testing_amit.Hooks;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -20,7 +20,7 @@ public class P02_Login {
     public WebElement unsuccessfulLoginMessage;
 
     public P02_Login() {
-        PageFactory.initElements(Browser.getDriver(), this);
+        PageFactory.initElements(Hooks.Browser.getDriver(), this);
     }
 
 

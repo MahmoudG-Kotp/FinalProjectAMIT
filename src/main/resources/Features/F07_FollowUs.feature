@@ -3,22 +3,22 @@
 @SmokeTest
 Feature: User navigates to follow us links
 
+  @HomePageTestScenario
   Scenario: User navigates to facebook
-    Given Navigate to home page
-    When User clicks on facebook link
-    Then Navigated successfully to selected link
+    Given User clicks on "facebook" link
+    Then Navigated to "https://www.facebook.com/nopCommerce" successfully
 
+  @HomePageTestScenario
   Scenario: User navigates to twitter
-    Given Navigate to home page
-    When User clicks on twitter link
-    Then Navigated successfully to selected link
+    Given User clicks on "twitter" link
+    Then Navigated to "https://twitter.com/nopCommerce" successfully
 
+  @HomePageTestScenario
   Scenario: User navigates to rss
-    Given Navigate to home page
-    When User clicks on rss link
-    Then Navigated successfully to selected link
+    Given User clicks on "rss" link
+    Then Navigated to "https://demo.nopcommerce.com/new-online-store-is-open" successfully
 
+  @HomePageTestScenario
   Scenario: User navigates to youtube
-    Given Navigate to home page
-    When User clicks on youtube link
-    Then Navigated successfully to selected link
+    Given User clicks on "youtube" link
+    Then Navigated to "https://www.youtube.com/user/nopCommerce" successfully

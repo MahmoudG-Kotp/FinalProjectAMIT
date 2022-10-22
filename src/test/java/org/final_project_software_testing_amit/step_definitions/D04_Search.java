@@ -8,8 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.time.Duration;
-
 public class D04_Search {
     private final P03_HomePage homePage = new P03_HomePage();
     private int shownProductResults;
@@ -33,7 +31,7 @@ public class D04_Search {
         homePage.searchBox.sendKeys(productSerialNumber);
         homePage.searchButton.click();
         shownProductResults = homePage.shownProducts.size();
-        Hooks.Browser.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        Hooks.Browser.implicitWait(5);
         homePage.shownProducts.get(0).click();
     }
 

@@ -24,7 +24,7 @@ public class D07_FollowUs {
 
     @Then("Navigated to {string} successfully")
     public void assertNavigatedLink(String networkLink) {
-        Hooks.Browser.switchTo(1);
+        Hooks.Browser.closeWindow(0);
         Assert.assertEquals(Hooks.Browser.getDriver().getCurrentUrl(), networkLink);
     }
 }

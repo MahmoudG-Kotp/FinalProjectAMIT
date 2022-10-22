@@ -7,7 +7,7 @@ Feature: F07_FollowUs | User navigates to follow us links
     Then Navigated to "<network link>" successfully
     Examples: Network names and links
       | network name | network link                                          |
-      | facebook     | https://web.facebook.com/nopCommerce?_rdc=1&_rdr      |
+      | facebook     | https://www.facebook.com/nopCommerce                  |
       | twitter      | https://twitter.com/nopCommerce                       |
       | rss          | https://demo.nopcommerce.com/new-online-store-is-open |
       | youtube      | https://www.youtube.com/user/nopCommerce              |

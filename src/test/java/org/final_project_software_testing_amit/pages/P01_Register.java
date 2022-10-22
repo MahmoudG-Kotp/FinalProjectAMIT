@@ -17,11 +17,11 @@ public class P01_Register {
     public WebElement firstNameEditText;
     @FindBy(id = "LastName")
     public WebElement lastNameEditText;
-    @FindBy(xpath = "//select[@name='DateOfBirthDay']/option[@value]")
+    @FindBy(css = "select[name='DateOfBirthDay']>option[value]")
     public List<WebElement> birthdateDayDropBox;
-    @FindBy(xpath = "//select[@name='DateOfBirthMonth']/option[@value]")
+    @FindBy(css = "select[name='DateOfBirthMonth']>option[value]")
     public List<WebElement> birthdateMonthDropBox;
-    @FindBy(xpath = "//select[@name='DateOfBirthYear']/option[@value]")
+    @FindBy(css = "select[name='DateOfBirthYear']>option[value]")
     public List<WebElement> birthdateYearDropBox;
     @FindBy(id = "Email")
     public WebElement emailEditText;

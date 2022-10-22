@@ -5,17 +5,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.final_project_software_testing_amit.Hooks;
 import org.final_project_software_testing_amit.pages.P03_HomePage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-
-import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
 public class D05_HoverCategories {
-    private final WebDriver hooksDriver = Hooks.Browser.getDriver();
     private final P03_HomePage homePage = new P03_HomePage();
     private String selectedCategoryTitle;
     private Category hoveredMainCategory;
@@ -25,7 +21,7 @@ public class D05_HoverCategories {
         //Return one from main categories randomly
         hoveredMainCategory = getRandomCategory(homePage.mainListCategories);
         //Do hovering
-        new Actions(hooksDriver).moveToElement(hoveredMainCategory.element).perform();
+        new Actions(Hooks.Browser.getDriver()).moveToElement(hoveredMainCategory.element).perform();
     }
 
     @When("User selects one of sub-categories if exists")
@@ -54,7 +50,7 @@ public class D05_HoverCategories {
          *If not
          * Return null
          */
-        hooksDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        Hooks.Browser.implicitWait(2);
         if (categoryElements.isEmpty()) return null;
         else {
             //Generate random index from 0 to the size-1

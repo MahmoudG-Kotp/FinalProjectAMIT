@@ -20,7 +20,7 @@ public class P03_HomePage {
             twitterNetworkListIndex = 1,
             rssNetworkListIndex = 2,
             youtubeNetworkListIndex = 3,
-            htcProductWishListButtonIndex = 3;
+            htcProductWishListButtonIndex = 2;
     private final WebDriver hooksDriver = Hooks.Browser.getDriver();
     /*LoginFeature*/
     @FindBy(css = "a[class='ico-account']")
@@ -29,7 +29,7 @@ public class P03_HomePage {
     /*CurrenciesFeature*/
     @FindBy(id = "customerCurrency")
     public WebElement customerCurrencyDropBox;
-    @FindBy(xpath = "//div[@class='product-grid home-page-product-grid']/div[@class='item-grid']/div[@class='item-box']")
+    @FindBy(css = "div[class='product-grid home-page-product-grid']>div[class='item-grid']>div[class='item-box']")
     public List<WebElement> homeProducts;
 
     /*SearchFeature*/
@@ -43,24 +43,28 @@ public class P03_HomePage {
     public WebElement serialNumberTextBox;
 
     /*HoverCategoriesFeature*/
-    @FindBy(xpath = "//ul[@class='top-menu notmobile']/li")
+    @FindBy(css = "ul[class='top-menu notmobile']>li")
     public List<WebElement> mainListCategories;
     @FindBy(css = "div[class='page-title']")
     public WebElement categoryPageTitle;
 
     /*HomeSlidersFeature*/
-    @FindBy(xpath = "//div[@id='nivo-slider']/a")
+    @FindBy(css = "div[id='nivo-slider']>a")
     public List<WebElement> homeSlidersBar;
 
     /*FollowUsFeature*/
-    @FindBy(xpath = "//ul[@class='networks']/li/a")
+    @FindBy(css = "ul[class='networks']>li>a")
     public List<WebElement> followUsNetworksList;
 
-//    /*WishlistFeature*/
-//    @FindBy(xpath = "//button[@title='Add to wishlist']")
-//    public List<WebElement> shownWishlistButtons;
-//    @FindBy(className = "bar-notification success")
-//    public WebElement successNotificationBar;
+    /*WishlistFeature*/
+    @FindBy(css = "button[title='Add to wishlist']")
+    public List<WebElement> shownWishlistButtons;
+    @FindBy(css = "div[class='bar-notification success']")
+    public WebElement successNotificationBar;
+    @FindBy(css = "div[class='header-links']>ul>li>a[href='/wishlist']")
+    public WebElement wishListTab;
+    @FindBy(className = "qty-input")
+    public WebElement quantityEditText;
 
     public P03_HomePage() {
         PageFactory.initElements(hooksDriver, this);
@@ -68,7 +72,7 @@ public class P03_HomePage {
 
     public List<WebElement> getSubListCategories(int mainCategoryIndex) {
         return hooksDriver.findElements(
-                By.xpath("//ul[@class='top-menu notmobile']/li" + "[" + mainCategoryIndex + 1 + "]/ul/li")
+                By.cssSelector("ul[class='top-menu notmobile']>li:nth-child(" + mainCategoryIndex + ")>ul>li")
         );
     }
 }

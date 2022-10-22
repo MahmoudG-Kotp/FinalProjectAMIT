@@ -6,37 +6,42 @@ import org.final_project_software_testing_amit.Hooks;
 import org.final_project_software_testing_amit.pages.P03_HomePage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
-/* TODO 4.2: Define needed functions to search in
-    home_page(https://demo.nopcommerce.com/) by using their elements in P03_HomePage
-    */
+import java.time.Duration;
 
 public class D04_Search {
     private final P03_HomePage homePage = new P03_HomePage();
+    private int shownProductResults;
 
-    // Question: why i can't access feature's outline scenario variable
-    @Given("User search with <product name>")
+    @Given("User search with {string} as product name")
     public void userSearchWithProductName(String productName) {
         homePage.searchBox.sendKeys(productName);
         homePage.searchButton.click();
     }
 
-    @Then("Shown products matches <product name>")
+    @Then("Shown products matches {string} as product name")
     public void assertProductsMatchesName(String productName) {
-        System.out.println("Shown results = " + homePage.searchedProducts.size());
-        for (WebElement product : homePage.searchedProducts) {
-            Assert.assertTrue(product.getText().toLowerCase().contains(productName));
+        System.out.println("Shown results = " + homePage.shownProducts.size());
+        for (WebElement product : homePage.shownProducts) {
+            Assert.assertTrue(product.getText().toLowerCase().contains(productName.toLowerCase()));
         }
     }
 
-    @Given("User search with <product serialnumber>")
-    public void searchWithSerialNumber(String productSerialNumber) {
+    @Given("User search with {string} as product serialnumber")
+    public void userSearchWithProductSerialnumber(String productSerialNumber) {
         homePage.searchBox.sendKeys(productSerialNumber);
         homePage.searchButton.click();
+        shownProductResults = homePage.shownProducts.size();
+        Hooks.Browser.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        homePage.shownProducts.get(0).click();
     }
 
-    @Then("Shown products matches <product serialnumber>")
-    public void assertProductsMatchesSerialNumber(String productSerialNumber) {
-        Assert.assertTrue(Hooks.Browser.getDriver().getCurrentUrl().contains(productSerialNumber));
+    @Then("Shown products matches {string} as product serialnumber")
+    public void assertProductsMatchesSerialnumber(String productSerialNumber) {
+        SoftAssert assertProductSerialnumberSearch = new SoftAssert();
+        assertProductSerialnumberSearch.assertEquals(shownProductResults, 1);
+        assertProductSerialnumberSearch.assertTrue(homePage.serialNumberTextBox.getText().contains(productSerialNumber));
+        assertProductSerialnumberSearch.assertAll();
     }
 }

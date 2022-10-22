@@ -11,7 +11,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 
 public class Hooks {
-    private final P03_HomePage homePage = new P03_HomePage();
 
     @Before(order = 0)
     public void openBrowser() {
@@ -23,12 +22,9 @@ public class Hooks {
         Browser.quit();
     }
 
-    /* Question: is this the best implement for the following method?
-        >> i used this because it's repeated in different scenarios for various feature
-     */
     @Before(order = 1, value = "@HomePageTestScenario")
     public void navigateToHomePage() {
-        Hooks.Browser.navigateTo(homePage.URL);
+        Hooks.Browser.navigateTo(new P03_HomePage().URL);
     }
 
     public static class Browser {

@@ -1,24 +1,13 @@
-# TODO 7.3: Execute following scenario by using D07_FollowUs functions
-
 @SmokeTest
-Feature: User navigates to follow us links
+Feature: F07_FollowUs | User navigates to follow us links
 
   @HomePageTestScenario
-  Scenario: User navigates to facebook
-    Given User clicks on "facebook" link
-    Then Navigated to "https://www.facebook.com/nopCommerce" successfully
-
-  @HomePageTestScenario
-  Scenario: User navigates to twitter
-    Given User clicks on "twitter" link
-    Then Navigated to "https://twitter.com/nopCommerce" successfully
-
-  @HomePageTestScenario
-  Scenario: User navigates to rss
-    Given User clicks on "rss" link
-    Then Navigated to "https://demo.nopcommerce.com/new-online-store-is-open" successfully
-
-  @HomePageTestScenario
-  Scenario: User navigates to youtube
-    Given User clicks on "youtube" link
-    Then Navigated to "https://www.youtube.com/user/nopCommerce" successfully
+  Scenario Outline: User navigates follow us network
+    When User clicks on "<network name>" link
+    Then Navigated to "<network link>" successfully
+    Examples: Network names and links
+      | network name | network link                                          |
+      | facebook     | https://web.facebook.com/nopCommerce?_rdc=1&_rdr      |
+      | twitter      | https://twitter.com/nopCommerce                       |
+      | rss          | https://demo.nopcommerce.com/new-online-store-is-open |
+      | youtube      | https://www.youtube.com/user/nopCommerce              |

@@ -1,6 +1,5 @@
 package org.final_project_software_testing_amit.step_definitions;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -19,10 +18,10 @@ public class D02_Login {
         Hooks.Browser.navigateTo(loginPage.URL);
     }
 
-    @Given("User enter valid data {string} as email and {string} as password")
-    public void enterValidEmailAndPassword(String validEmail, String validPassword) {
-        loginPage.emailEditText.sendKeys(validEmail);
-        loginPage.passwordEditText.sendKeys(validPassword);
+    @Given("User enter data {string} as email and {string} as password")
+    public void enterEmailAndPassword(String email, String password) {
+        loginPage.emailEditText.sendKeys(email);
+        loginPage.passwordEditText.sendKeys(password);
     }
 
     @When("Login button clicked")
@@ -38,19 +37,13 @@ public class D02_Login {
         assertLoginSuccessful.assertAll();
     }
 
-    @Given("User enter invalid data {string} as email and {string} as password")
-    public void enterInvalidEmailAndPassword(String invalidEmail, String invalidPassword) {
-        loginPage.emailEditText.sendKeys(invalidEmail);
-        loginPage.passwordEditText.sendKeys(invalidPassword);
-    }
-
     @Then("Login not proceeding")
     public void assertLoginNotProceeding() {
         SoftAssert assertLoginUnsuccessful = new SoftAssert();
         assertLoginUnsuccessful.assertTrue(loginPage.unsuccessfulLoginMessage.isDisplayed());
         assertLoginUnsuccessful.assertEquals(
                 Color.fromString(loginPage.unsuccessfulLoginMessage.getCssValue("color")).asHex(),
-                "#e4434b");
+                loginPage.unsuccessfulMessageColorHEX);
         assertLoginUnsuccessful.assertAll();
     }
 }

@@ -8,12 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class P01_Register {
-    public final String URL = "https://demo.nopcommerce.com/register?returnUrl=%2F";
+    public final String URL = "https://demo.nopcommerce.com/register?returnUrl=%2F",
+    successMessageColorRGBA = "rgba(76, 177, 124, 1)";
 
     @FindBy(id = "gender-male")
     public WebElement maleGenderRadioButton;
-    @FindBy(id = "gender-female")
-    public WebElement femaleGenderRadioButton;
     @FindBy(id = "FirstName")
     public WebElement firstNameEditText;
     @FindBy(id = "LastName")

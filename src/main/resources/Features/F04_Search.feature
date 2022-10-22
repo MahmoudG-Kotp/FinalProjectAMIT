@@ -1,12 +1,10 @@
-# TODO 4.3: Execute search scenario by using D04_Search functions
-
 @SmokeTest
-Feature: User search on product
+Feature: F04_Search | User search on product
 
   @HomePageTestScenario
   Scenario Outline: User search by product name successfully
-    Given User search with <product name>
-    Then Shown products matches <product name>
+    When User search with "<product name>" as product name
+    Then Shown products matches "<product name>" as product name
     Examples: Products names in stock
       | product name |
       | Book         |
@@ -15,8 +13,8 @@ Feature: User search on product
 
   @HomePageTestScenario
   Scenario Outline: User search by product serialnumber successfully
-    Given User search with <serialnumber>
-    Then Shown products matches <serialnumber>
+    When User search with "<serialnumber>" as product serialnumber
+    Then Shown products matches "<serialnumber>" as product serialnumber
     Examples: Products serials in stock
       | serialnumber |
       | SCI_FAITH    |

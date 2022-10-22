@@ -63,7 +63,7 @@ public class D01_Register {
         assertSuccessfulMessage.assertTrue(registerPage.registrationSuccessfulMessage.isDisplayed());
         assertSuccessfulMessage.assertEquals(
                 registerPage.registrationSuccessfulMessage.getCssValue("color"),
-                "rgba(76, 177, 124, 1)");
+                registerPage.successMessageColorRGBA);
         assertSuccessfulMessage.assertAll();
     }
 }

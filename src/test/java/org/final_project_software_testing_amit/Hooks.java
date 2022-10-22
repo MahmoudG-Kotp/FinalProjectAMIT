@@ -6,12 +6,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.final_project_software_testing_amit.pages.P03_HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
 
 public class Hooks {
-    private final P03_HomePage homePage = new P03_HomePage();
 
     @Before(order = 0)
     public void openBrowser() {
@@ -23,12 +23,9 @@ public class Hooks {
         Browser.quit();
     }
 
-    /* Question: is this the best implement for the following method?
-        >> i used this because it's repeated in different scenarios for various feature
-     */
     @Before(order = 1, value = "@HomePageTestScenario")
     public void navigateToHomePage() {
-        Hooks.Browser.navigateTo(homePage.URL);
+        Hooks.Browser.navigateTo(new P03_HomePage().URL);
     }
 
     public static class Browser {
@@ -43,7 +40,7 @@ public class Hooks {
             WebDriverManager.chromedriver().setup();
             mainDriver = new ChromeDriver();
             mainDriver.manage().window().maximize();
-            mainDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            implicitWait(10);
         }
 
         public static void navigateTo(String link) {
@@ -56,10 +53,20 @@ public class Hooks {
             return mainDriver.switchTo().window(new ArrayList<>(mainDriver.getWindowHandles()).get(windowIndex));
         }
 
+        public static void implicitWait(int seconds) {
+            mainDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
+        }
+
+        public static WebDriverWait explicitWait(int seconds) {
+            return new WebDriverWait(mainDriver, Duration.ofSeconds(seconds));
+        }
+
         public static void closeWindow(int windowIndex) {
             // Close specific tab(window) by using switchTo method -which pre-defined- and switch to the new last tab index to keep control
             switchTo(windowIndex).close();
-            switchTo(windowIndex - 1);
+            if (windowIndex == 0) switchTo(windowIndex);
+            else switchTo(windowIndex - 1);
+
         }
 
         private static void quit() throws InterruptedException {

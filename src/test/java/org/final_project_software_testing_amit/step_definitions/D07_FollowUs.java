@@ -6,10 +6,6 @@ import org.final_project_software_testing_amit.Hooks;
 import org.final_project_software_testing_amit.pages.P03_HomePage;
 import org.testng.Assert;
 
-/* TODO 7.2: Define needed functions to navigate to follow us links in
-    home_page(https://demo.nopcommerce.com/) by using their elements in P03_HomePage
-    */
-
 public class D07_FollowUs {
     private final P03_HomePage homePage = new P03_HomePage();
 
@@ -28,7 +24,7 @@ public class D07_FollowUs {
 
     @Then("Navigated to {string} successfully")
     public void assertNavigatedLink(String networkLink) {
-        Hooks.Browser.switchTo(1);
+        Hooks.Browser.closeWindow(0);
         Assert.assertEquals(Hooks.Browser.getDriver().getCurrentUrl(), networkLink);
     }
 }

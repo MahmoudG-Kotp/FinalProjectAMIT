@@ -25,7 +25,7 @@ public class Hooks {
 
     @Before(order = 1, value = "@HomePageTestScenario")
     public void navigateToHomePage() {
-        Hooks.Browser.navigateTo(new P03_HomePage().URL);
+        Browser.navigateTo(new P03_HomePage().URL);
     }
 
     public static class Browser {

@@ -64,8 +64,7 @@ public class Hooks {
         public static void closeWindow(int windowIndex) {
             // Close specific tab(window) by using switchTo method -which pre-defined- and switch to the new last tab index to keep control
             switchTo(windowIndex).close();
-            if (windowIndex == 0) switchTo(windowIndex);
-            else switchTo(windowIndex - 1);
+            switchTo(windowIndex - 1);
 
         }
 

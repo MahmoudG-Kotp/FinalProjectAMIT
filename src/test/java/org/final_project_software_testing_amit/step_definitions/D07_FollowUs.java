@@ -1,7 +1,7 @@
 package org.final_project_software_testing_amit.step_definitions;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.final_project_software_testing_amit.Hooks;
 import org.final_project_software_testing_amit.pages.P03_HomePage;
 import org.testng.Assert;
@@ -9,7 +9,7 @@ import org.testng.Assert;
 public class D07_FollowUs {
     private final P03_HomePage homePage = new P03_HomePage();
 
-    @Given("User clicks on {string} link")
+    @When("User clicks on {string} link")
     public void userClicksOnLink(String networkName) {
         int selectedNetworkIndex;
         switch (networkName) {

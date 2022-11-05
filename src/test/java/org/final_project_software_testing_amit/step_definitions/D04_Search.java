@@ -1,7 +1,7 @@
 package org.final_project_software_testing_amit.step_definitions;
 
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.final_project_software_testing_amit.Hooks;
 import org.final_project_software_testing_amit.pages.P03_HomePage;
 import org.openqa.selenium.WebElement;
@@ -12,7 +12,7 @@ public class D04_Search {
     private final P03_HomePage homePage = new P03_HomePage();
     private int shownProductResults;
 
-    @Given("User search with {string} as product name")
+    @When("User search with {string} as product name")
     public void userSearchWithProductName(String productName) {
         homePage.searchBox.sendKeys(productName);
         homePage.searchButton.click();
@@ -26,7 +26,7 @@ public class D04_Search {
         }
     }
 
-    @Given("User search with {string} as product serialnumber")
+    @When("User search with {string} as product serialnumber")
     public void userSearchWithProductSerialnumber(String productSerialNumber) {
         homePage.searchBox.sendKeys(productSerialNumber);
         homePage.searchButton.click();
